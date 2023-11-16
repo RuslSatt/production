@@ -23,6 +23,6 @@ export function getWebpackConfig(options: BuildOptions): webpack.Configuration {
 		module: {
 			rules: getLoaders(options)
 		},
-		resolve: getResolvers()
+		resolve: getResolvers(options)
 	};
 }
