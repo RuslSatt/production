@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { classNames } from 'shared/lib/classNames';
-import style from './Sidebar.module.scss';
 import { useTranslation } from 'react-i18next';
+import style from './Sidebar.module.scss';
 
 export const Sidebar = () => {
 	const { t } = useTranslation();
@@ -14,7 +14,9 @@ export const Sidebar = () => {
 
 	return (
 		<div className={classNames(style.Sidebar, [], { [style.collapsed]: collapsed })}>
-			<button onClick={handleToggle}>{t('Toggle')}</button>
+			<button type='button' onClick={handleToggle}>
+				{t('Toggle')}
+			</button>
 		</div>
 	);
 };

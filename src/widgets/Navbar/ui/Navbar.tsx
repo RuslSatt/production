@@ -2,9 +2,9 @@ import React from 'react';
 import { classNames } from 'shared/lib/classNames';
 import ButtonLink from 'shared/ui/ButtonLink/ButtonLink';
 import { SwitchTheme } from 'widgets/SwitchTheme';
-import style from './Navbar.module.scss';
 import { useTranslation } from 'react-i18next';
 import { LangSwitch } from 'widgets/LangSwitch';
+import style from './Navbar.module.scss';
 
 const NavBar = () => {
 	const { t } = useTranslation();
@@ -14,8 +14,8 @@ const NavBar = () => {
 			<SwitchTheme />
 			<LangSwitch />
 			<div>
-				<ButtonLink to={`/`}>{t('Main')}</ButtonLink>
-				<ButtonLink to={`/about`}>{t('About')}</ButtonLink>
+				<ButtonLink to='/'>{t('Main')}</ButtonLink>
+				<ButtonLink to='/about'>{t('About')}</ButtonLink>
 			</div>
 		</nav>
 	);

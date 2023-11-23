@@ -1,14 +1,14 @@
 import React, { Suspense } from 'react';
 import './styles/index.scss';
-import { useTheme } from './providers/ThemeProvider';
 import { classNames } from 'shared/lib/classNames';
-import { AppRouter } from './providers/AppRouter';
 import { NavBar } from 'widgets/Navbar/ui/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
+import { AppRouter } from './providers/AppRouter';
+import { useTheme } from './providers/ThemeProvider';
 
 import '../shared/config/i18n/i18n';
 
-const App = () => {
+function App() {
 	const { theme } = useTheme();
 
 	return (
@@ -24,6 +24,6 @@ const App = () => {
 			</div>
 		</Suspense>
 	);
-};
+}
 
 export default App;

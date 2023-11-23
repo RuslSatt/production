@@ -1,5 +1,5 @@
-import React from 'react';
-import { FC, PropsWithChildren } from 'react';
+import React, { FC } from 'react';
+
 import { Link, LinkProps } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
 import style from './ButtonLink.module.scss';
