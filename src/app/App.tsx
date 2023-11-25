@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import './styles/index.scss';
-import { classNames } from 'shared/lib/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { NavBar } from 'widgets/Navbar/ui/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { AppRouter } from './providers/AppRouter';

@@ -1,7 +1,8 @@
 module.exports = {
 	env: {
 		browser: true,
-		es2021: true
+		es2021: true,
+		jest: true
 	},
 	extends: ['plugin:react/recommended', 'airbnb'],
 	parser: '@typescript-eslint/parser',
@@ -34,6 +35,7 @@ module.exports = {
 		'jsx-a11y/no-static-element-interactions': 'off',
 		'react/self-closing-comp': 'off',
 		'react/require-default-props': 'off',
-		'react/jsx-props-no-spreading': 'warn'
+		'react/jsx-props-no-spreading': 'warn',
+		'max-len': ['error', { code: 120, ignoreComments: true }]
 	}
 };

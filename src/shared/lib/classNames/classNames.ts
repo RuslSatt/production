@@ -5,5 +5,5 @@ export const classNames = (cls: string, additional: Array<string> = [], modes: M
 		.filter(([className, value]) => Boolean(value))
 		.map(([className]) => className);
 
-	return [cls, ...additional, modes ? modesClasses : ''].join(' ');
+	return [cls, ...additional.filter(Boolean), ...modesClasses].join(' ');
 };

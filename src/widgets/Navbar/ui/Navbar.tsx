@@ -1,5 +1,5 @@
 import React from 'react';
-import { classNames } from 'shared/lib/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import ButtonLink from 'shared/ui/ButtonLink/ButtonLink';
 import { SwitchTheme } from 'widgets/SwitchTheme';
 import { useTranslation } from 'react-i18next';

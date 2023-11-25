@@ -1,6 +1,6 @@
 import { useTheme } from 'app/providers/ThemeProvider';
 import React from 'react';
-import { classNames } from 'shared/lib/classNames';
+import { classNames } from 'shared/lib/classNames/classNames';
 import style from './SwitchTheme.module.scss';
 
 const SwitchTheme = () => {
