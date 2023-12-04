@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import './styles/index.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { NavBar } from 'widgets/Navbar/ui/Navbar';
@@ -10,6 +10,10 @@ import '../shared/config/i18n/i18n';
 
 function App() {
 	const { theme } = useTheme();
+
+	useEffect(() => {
+		throw new Error();
+	}, []);
 
 	return (
 		<Suspense fallback='loading...'>
