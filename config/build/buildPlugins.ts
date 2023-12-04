@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildPaths } from './types/config';
 
 export function getPlugins(paths: BuildPaths): webpack.WebpackPluginInstance[] {
@@ -11,6 +12,9 @@ export function getPlugins(paths: BuildPaths): webpack.WebpackPluginInstance[] {
 		new webpack.ProgressPlugin(),
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].[contenthash].css'
+		}),
+		new BundleAnalyzerPlugin({
+			openAnalyzer: false
 		})
 	];
 }
