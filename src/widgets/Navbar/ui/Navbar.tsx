@@ -14,8 +14,12 @@ const NavBar = () => {
 			<SwitchTheme />
 			<LangSwitch />
 			<div>
-				<ButtonLink to='/'>{t('Main')}</ButtonLink>
-				<ButtonLink to='/about'>{t('About')}</ButtonLink>
+				<ButtonLink data-testid='link-main' to='/'>
+					{t('Main')}
+				</ButtonLink>
+				<ButtonLink data-testid='link-about' to='/about'>
+					{t('About')}
+				</ButtonLink>
 			</div>
 		</nav>
 	);
