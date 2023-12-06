@@ -13,8 +13,8 @@ export const Sidebar = () => {
 	};
 
 	return (
-		<div className={classNames(style.Sidebar, [], { [style.collapsed]: collapsed })}>
-			<button type='button' onClick={handleToggle}>
+		<div data-testid='sidebar' className={classNames(style.Sidebar, [], { [style.collapsed]: collapsed })}>
+			<button data-testid='toggle' type='button' onClick={handleToggle}>
 				{t('Toggle')}
 			</button>
 		</div>

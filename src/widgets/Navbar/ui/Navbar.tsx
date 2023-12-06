@@ -10,7 +10,7 @@ const NavBar = () => {
 	const { t } = useTranslation();
 
 	return (
-		<nav className={classNames(style.Nav, [])}>
+		<nav data-testid='navbar' className={classNames(style.Nav, [])}>
 			<SwitchTheme />
 			<LangSwitch />
 			<div>
