@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/react';
+import { ThemeDecorator } from '../../src/shared/config/storybook/decorators/ThemeDecorator';
+import '../../src/app/styles/index.scss';
 
 const preview: Preview = {
 	parameters: {
@@ -9,7 +11,8 @@ const preview: Preview = {
 				date: /Date$/i
 			}
 		}
-	}
+	},
+	decorators: [ThemeDecorator('dark')]
 };
 
 export default preview;
