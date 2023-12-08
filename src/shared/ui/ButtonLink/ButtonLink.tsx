@@ -6,7 +6,7 @@ import style from './ButtonLink.module.scss';
 
 interface ButtonLinkProps extends LinkProps {}
 
-const ButtonLink: FC<ButtonLinkProps> = (props) => {
+export const ButtonLink: FC<ButtonLinkProps> = (props) => {
 	const { children, to } = props;
 	return (
 		<Link className={classNames(style.Link, [])} to={to}>
@@ -14,5 +14,3 @@ const ButtonLink: FC<ButtonLinkProps> = (props) => {
 		</Link>
 	);
 };
-
-export default ButtonLink;

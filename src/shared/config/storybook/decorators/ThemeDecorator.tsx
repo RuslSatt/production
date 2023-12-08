@@ -1,6 +1,5 @@
 import { StoryFn } from '@storybook/react';
 import { Themes } from 'app/providers/ThemeProvider/lib/ThemeContext';
-import 'app/styles/index.scss';
 import React from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 
