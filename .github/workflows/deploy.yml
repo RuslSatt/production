@@ -1,0 +1,37 @@
+name: CI Project
+
+on:
+    push:
+        branches: ['main']
+    pull_request:
+        branches: ['main']
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node: [20]
+
+        steps:
+            - name: Checkout main branch
+              uses: actions/checkout@v2
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v1.4.3
+              with:
+                  node-version: ${{ matrix.node }}
+
+            - name: Install NPM
+              uses: npm install
+
+            - name: Build production
+              uses: npm run build
+
+            - name: Lint build
+              uses: npm run lint
+
+            - name: Run unit test
+              uses: npm run test:unit
+
+            - name: Storybook build
+              uses: npm run storybook:build
