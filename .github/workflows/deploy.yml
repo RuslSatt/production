@@ -7,7 +7,7 @@ on:
         branches: [main]
 jobs:
     deploy:
-        runs-on: ubuntu-latest
+        runs-on: windows-latest
         strategy:
             matrix:
                 node: [20.x]
