@@ -2,36 +2,28 @@ name: CI Project
 
 on:
     push:
-        branches: ['main']
+        branches: [main]
     pull_request:
-        branches: ['main']
+        branches: [main]
 jobs:
     deploy:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                node: [20]
-
+                node: [20.x]
         steps:
-            - name: Checkout main branch
-              uses: actions/checkout@v2
-
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v1.4.3
+            - uses: actions/checkout@v3
+            - name: Staring Node.js ${{ matrix.node }}
+              uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node }}
-
             - name: Install NPM
-              uses: npm install
-
-            - name: Build production
-              uses: npm run build
-
+              run: npm install
             - name: Lint build
-              uses: npm run lint
-
+              run: npm run lint
             - name: Run unit test
-              uses: npm run test:unit
-
+              run: npm run test:unit
             - name: Storybook build
-              uses: npm run storybook:build
+              run: npm run storybook:build
+            - name: Build production
+              run: npm run build
