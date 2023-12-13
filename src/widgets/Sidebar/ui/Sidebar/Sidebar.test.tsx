@@ -1,16 +1,16 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
-import { renderTranslation } from 'shared/lib/test/renderTranslation';
+import { fireEvent, screen } from '@testing-library/react';
+import { componentRender } from 'shared/lib/test/componentRender';
 import { Sidebar } from './Sidebar';
 
 describe('Sidebar', () => {
 	test('Test render Sidebar', () => {
-		render(renderTranslation(<Sidebar />));
+		componentRender(<Sidebar />);
 		expect(screen.getByTestId('sidebar')).toBeInTheDocument();
 	});
 
 	test('Test switch Sidebar', () => {
-		render(renderTranslation(<Sidebar />));
+		componentRender(<Sidebar />);
 
 		const sidebar = screen.getByTestId('sidebar');
 		const button = screen.getByTestId('toggle');
