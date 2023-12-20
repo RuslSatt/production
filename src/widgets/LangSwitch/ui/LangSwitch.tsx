@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared/ui/Button/Button';
+import { Button } from 'rs-custom-ui';
 
 export function LangSwitch() {
 	const { t, i18n } = useTranslation();
