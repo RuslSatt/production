@@ -37,7 +37,9 @@ module.exports = {
 		'react/require-default-props': 'off',
 		'react/jsx-props-no-spreading': 'warn',
 		'max-len': ['error', { code: 120, ignoreComments: true }],
-		'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAllAttributes: true }]
+		'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAllAttributes: true }],
+		'no-param-reassign': 'off',
+		'object-curly-newline': 'off'
 	},
 	overrides: [
 		{
