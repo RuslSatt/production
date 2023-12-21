@@ -1,8 +1,19 @@
 .Sidebar {
 	width: var(--sidebar-width);
-	height: calc(100vh - 50px);
+	height: calc(100vh - 70px);
 	background-color: var(--navbar-bg-color);
 	transition: width 0.2s;
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	gap: 20px;
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: start;
 }
 
 .collapsed {

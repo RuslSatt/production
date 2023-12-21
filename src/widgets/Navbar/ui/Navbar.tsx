@@ -20,14 +20,6 @@ const NavBar = () => {
 		<nav data-testid='navbar' className={classNames(style.Nav, [])}>
 			<SwitchTheme />
 			<LangSwitch />
-			<div>
-				<ButtonLink data-testid='link-main' to='/'>
-					{t('Main')}
-				</ButtonLink>
-				<ButtonLink data-testid='link-about' to='/about'>
-					{t('About')}
-				</ButtonLink>
-			</div>
 			<Button label='Войти' onClick={handleModalOpen} />
 			<Modal isOpen={isOpen} onClose={handleModalOpen}>
 				{t('This is a modal window')}

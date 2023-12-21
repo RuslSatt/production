@@ -26,4 +26,4 @@ export const Dark: Story = {
 	args: {}
 };
 
-Dark.decorators = [RouterDecorator, ThemeDecorator(Themes.DARK)];
+Dark.decorators = [ThemeDecorator(Themes.DARK)];
