@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ButtonLink } from 'shared/ui/ButtonLink/ButtonLink';
 import { SwitchTheme } from 'widgets/SwitchTheme';
 import { useTranslation } from 'react-i18next';
 import { LangSwitch } from 'widgets/LangSwitch';
-import { Button, Modal } from 'rs-custom-ui';
+import { Button } from 'rs-custom-ui';
+import { LoginModal } from 'features/AuthByUsername';
 import style from './Navbar.module.scss';
 
 const NavBar = () => {
@@ -21,9 +21,9 @@ const NavBar = () => {
 			<SwitchTheme />
 			<LangSwitch />
 			<Button label='Войти' onClick={handleModalOpen} />
-			<Modal isOpen={isOpen} onClose={handleModalOpen}>
+			<LoginModal isOpen={isOpen} onClose={handleModalOpen}>
 				{t('This is a modal window')}
-			</Modal>
+			</LoginModal>
 		</nav>
 	);
 };
