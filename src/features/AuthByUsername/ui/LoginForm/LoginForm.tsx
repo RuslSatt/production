@@ -19,8 +19,8 @@ export const LoginForm = () => {
 
 	return (
 		<div className={style.LoginForm}>
-			<Input value={valueText} onChange={onChangeText} type='text' />
-			<Input value={valuePass} onChange={onChangePass} type='password' />
+			<Input placeholder='Name' value={valueText} onChange={onChangeText} type='text' />
+			<Input placeholder='Password' value={valuePass} onChange={onChangePass} type='password' />
 			<Button label={t('Войти')} />
 		</div>
 	);
