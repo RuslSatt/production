@@ -15,7 +15,6 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		console.log('auth');
 		dispatch(userActions.initAuthData());
 	}, [dispatch]);
 
