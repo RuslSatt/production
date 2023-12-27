@@ -26,20 +26,26 @@ const NavBar = () => {
 
 	const authData = useSelector(getUserAuthData);
 
-	let CurrentBtn = <Button label='Войти' onClick={handleModalOpen}></Button>;
-
 	if (authData) {
-		CurrentBtn = <Button label='Выйти' onClick={handleLogout} />;
+		return (
+			<nav data-testid='navbar' className={classNames(style.Nav, [])}>
+				<SwitchTheme />
+				<LangSwitch />
+				<Button label='Выйти' onClick={handleLogout} />
+			</nav>
+		);
 	}
 
 	return (
 		<nav data-testid='navbar' className={classNames(style.Nav, [])}>
 			<SwitchTheme />
 			<LangSwitch />
-			{CurrentBtn}
-			<LoginModal isOpen={isOpen} onClose={handleModalOpen}>
-				{t('This is a modal window')}
-			</LoginModal>
+			<Button label='Войти' onClick={handleModalOpen}></Button>
+			{isOpen && (
+				<LoginModal isOpen={isOpen} onClose={handleModalOpen}>
+					{t('This is a modal window')}
+				</LoginModal>
+			)}
 		</nav>
 	);
 };
