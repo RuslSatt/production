@@ -1,4 +1,3 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import webpack from 'webpack';
 import { BuildOptions } from './types/config';
 import { buildStyleLoader } from './loaders/buildStyleLoader';
@@ -6,6 +5,26 @@ import { buildStyleLoader } from './loaders/buildStyleLoader';
 // * Порядок расположения loaders важно.
 
 export function getLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+	const babelLoader = {
+		test: /\.(js|jsx|tsx)$/,
+		exclude: /node_modules/,
+		use: {
+			loader: 'babel-loader',
+			options: {
+				presets: ['@babel/preset-env'],
+				plugins: [
+					[
+						'i18next-extract',
+						{
+							locales: ['ru', 'en'],
+							keyAsDefaultValue: true
+						}
+					]
+				]
+			}
+		}
+	};
+
 	const tsLoader = {
 		test: /\.tsx?$/,
 		use: 'ts-loader',
@@ -14,5 +33,5 @@ export function getLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
 	const styleLoader = buildStyleLoader(options.isDev);
 
-	return [tsLoader, styleLoader];
+	return [babelLoader, tsLoader, styleLoader];
 }
