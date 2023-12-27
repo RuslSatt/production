@@ -1,8 +1,8 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Button, Input } from 'rs-custom-ui';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector, useStore } from 'react-redux';
-import { ReduxStoreManager } from 'app/providers/StoreProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
@@ -11,23 +11,17 @@ import { loginByUsername } from '../../model/services/loginByUsername/loginByUse
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import style from './LoginForm.module.scss';
 
+const initialReducers: ReducersList = {
+	loginForm: loginReducer
+};
+
 const LoginForm = memo(() => {
 	const { t } = useTranslation();
-
-	const store = useStore() as ReduxStoreManager;
 
 	const error = useSelector(getLoginError);
 	const isLoading = useSelector(getLoginIsLoading);
 	const username = useSelector(getLoginUsername);
 	const password = useSelector(getLoginPassword);
-
-	useEffect(() => {
-		store.reducerManager.add('loginForm', loginReducer);
-
-		return () => {
-			store.reducerManager.remove('loginForm');
-		};
-	}, []);
 
 	const dispatch = useDispatch();
 
@@ -50,12 +44,14 @@ const LoginForm = memo(() => {
 	}, [dispatch, username, password]);
 
 	return (
-		<div className={style.LoginForm}>
-			{error && <div>{error}</div>}
-			<Input placeholder='Name' value={username} onChange={onChangeUsername} type='text' />
-			<Input placeholder='Password' value={password} onChange={onChangePassword} type='password' />
-			<Button disabled={isLoading} onClick={onClickLogin} label={t('Войти')} />
-		</div>
+		<DynamicModuleLoader reducers={initialReducers}>
+			<div className={style.LoginForm}>
+				{error && <div>{error}</div>}
+				<Input placeholder='Name' value={username} onChange={onChangeUsername} type='text' />
+				<Input placeholder='Password' value={password} onChange={onChangePassword} type='password' />
+				<Button disabled={isLoading} onClick={onClickLogin} label={t('Войти')} />
+			</div>
+		</DynamicModuleLoader>
 	);
 });
 
