@@ -13,7 +13,7 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module'
 	},
-	plugins: ['react', '@typescript-eslint', 'i18next'],
+	plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
 	rules: {
 		'react/jsx-indent': [2, 'tab'],
 		indent: ['error', 'tab'],
@@ -39,7 +39,8 @@ module.exports = {
 		'max-len': ['error', { code: 120, ignoreComments: true }],
 		'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAllAttributes: true }],
 		'no-param-reassign': 'off',
-		'object-curly-newline': 'off'
+		'object-curly-newline': 'off',
+		'react-hooks/exhaustive-deps': 'error' // Checks effect dependencies,
 	},
 	overrides: [
 		{

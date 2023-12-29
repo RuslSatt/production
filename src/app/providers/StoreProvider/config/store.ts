@@ -23,3 +23,5 @@ export const createStore = (initialState?: StateSchema, asyncReducers?: DeepPart
 
 	return store;
 };
+
+export type AppDispatch = ReturnType<typeof createStore>['dispatch'];
