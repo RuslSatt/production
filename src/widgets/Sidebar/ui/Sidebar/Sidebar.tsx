@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { ButtonLink } from 'shared/ui/ButtonLink/ButtonLink';
 import { Button } from 'rs-custom-ui';
+import { SidebarItemList } from 'widgets/Sidebar/model/items';
 import style from './Sidebar.module.scss';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 
-export const Sidebar = () => {
-	const { t } = useTranslation();
-
+export const Sidebar = memo(() => {
 	const [collapsed, setCollapsed] = useState(false);
 
 	const handleToggle = () => {
@@ -20,13 +18,10 @@ export const Sidebar = () => {
 				<Button data-testid='toggle' label={collapsed ? '>' : '<'} onClick={handleToggle} />
 			</div>
 			<div className={style.links}>
-				<ButtonLink data-testid='link-main' to='/'>
-					{t('Main')}
-				</ButtonLink>
-				<ButtonLink data-testid='link-about' to='/about'>
-					{t('About')}
-				</ButtonLink>
+				{SidebarItemList.map(({ path, text }) => (
+					<SidebarItem key={path} path={path} text={text} />
+				))}
 			</div>
 		</div>
 	);
-};
+});

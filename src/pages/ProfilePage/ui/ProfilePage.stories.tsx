@@ -3,18 +3,18 @@ import 'app/styles/index.scss';
 import { ThemeDecorator } from 'shared/config/storybook/decorators/ThemeDecorator';
 import { Themes } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import { RouterDecorator } from 'shared/config/storybook/decorators/RouterDecorator';
-import MainPage from './ProfilePage';
+import ProfilePage from './ProfilePage';
 
-const meta: Meta<typeof MainPage> = {
-	title: 'pages/MainPage',
-	component: MainPage,
+const meta: Meta<typeof ProfilePage> = {
+	title: 'pages/ProfilePage',
+	component: ProfilePage,
 	parameters: {},
 	tags: ['autodocs'],
 	argTypes: {}
 };
 
 export default meta;
-type Story = StoryObj<typeof MainPage>;
+type Story = StoryObj<typeof ProfilePage>;
 
 export const Light: Story = {
 	args: {}
