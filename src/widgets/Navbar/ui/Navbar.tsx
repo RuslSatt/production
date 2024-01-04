@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { SwitchTheme } from 'widgets/SwitchTheme';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,7 @@ import { getUserAuthData } from 'entities/User';
 import { userActions } from 'entities/User/model/slice/userSlice';
 import style from './Navbar.module.scss';
 
-const NavBar = () => {
+const NavBar = memo(() => {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const NavBar = () => {
 
 	const handleLogout = useCallback(() => {
 		dispatch(userActions.logout());
-	}, []);
+	}, [dispatch]);
 
 	const authData = useSelector(getUserAuthData);
 
@@ -48,6 +48,6 @@ const NavBar = () => {
 			)}
 		</nav>
 	);
-};
+});
 
 export { NavBar };

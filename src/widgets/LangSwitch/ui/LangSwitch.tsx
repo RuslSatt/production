@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'rs-custom-ui';
 
-export function LangSwitch() {
+export const LangSwitch = memo(() => {
 	const { t, i18n } = useTranslation();
 
 	const handleClick = () => {
@@ -10,4 +10,4 @@ export function LangSwitch() {
 	};
 
 	return <Button onClick={handleClick}>{t('Lang')}</Button>;
-}
+});

@@ -1,9 +1,9 @@
 import { useTheme } from 'app/providers/ThemeProvider';
-import React from 'react';
+import React, { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import style from './SwitchTheme.module.scss';
 
-const SwitchTheme = () => {
+const SwitchTheme = memo(() => {
 	const { toggleTheme } = useTheme();
 
 	return (
@@ -11,6 +11,6 @@ const SwitchTheme = () => {
 			<div className={classNames(style.switchTheme__toggle, [])}></div>
 		</div>
 	);
-};
+});
 
 export { SwitchTheme };
