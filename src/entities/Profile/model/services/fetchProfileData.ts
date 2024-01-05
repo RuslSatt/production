@@ -3,7 +3,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Profile } from '../types/profile';
 
 export const fetchProfileData = createAsyncThunk<Profile, void, ThunkConfig<string>>(
-	'profile/fetchProfile',
+	'profile/fetchProfileData',
 	async (_, thunkApi) => {
 		const { rejectWithValue, extra } = thunkApi;
 
@@ -14,7 +14,7 @@ export const fetchProfileData = createAsyncThunk<Profile, void, ThunkConfig<stri
 
 			return response.data;
 		} catch (e) {
-			return rejectWithValue('error edit profile');
+			return rejectWithValue('error get profile data');
 		}
 	}
 );

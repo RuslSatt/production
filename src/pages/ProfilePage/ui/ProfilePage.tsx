@@ -1,4 +1,4 @@
-import { fetchProfileData, profileReducer } from 'entities/Profile';
+import { ProfileCard, fetchProfileData, profileReducer } from 'entities/Profile';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -14,13 +14,14 @@ const ProfilePage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(fetchProfileData);
-	}, [dispatch]);
+		dispatch(fetchProfileData());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div>
 			<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-				<h1>{t('Profile Page')}</h1>
+				<ProfileCard />
 			</DynamicModuleLoader>
 		</div>
 	);
