@@ -6,7 +6,7 @@ import { LoginFormLazy } from '../LoginForm/LoginFormLazy';
 export interface LoginModalProps {
 	children?: React.ReactNode;
 	isOpen?: boolean;
-	onClose?: () => void;
+	onClose: () => void;
 }
 
 export const LoginModal = (props: LoginModalProps) => {

@@ -32,7 +32,7 @@ export type ThunkNavigate = (to: To, options?: NavigateOptions) => void;
 
 export interface ThunkExtra {
 	api: AxiosInstance;
-	navigate: ThunkNavigate;
+	navigate?: ThunkNavigate;
 }
 
 export interface ThunkConfig<T> {

@@ -1,6 +1,6 @@
-type Modes = Record<string, string | boolean>;
+type Modes = Record<string, string | boolean | undefined>;
 
-export const classNames = (cls: string, additional: Array<string> = [], modes: Modes = {}) => {
+export const classNames = (cls: string, additional: Array<string | undefined> = [], modes: Modes = {}) => {
 	const modesClasses = Object.entries(modes)
 		.filter(([className, value]) => Boolean(value))
 		.map(([className]) => className);

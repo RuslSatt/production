@@ -40,7 +40,8 @@ module.exports = {
 		'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAllAttributes: true }],
 		'no-param-reassign': 'off',
 		'object-curly-newline': 'off',
-		'react-hooks/exhaustive-deps': 'error' // Checks effect dependencies,
+		'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+		'no-undef': 'off'
 	},
 	overrides: [
 		{

@@ -1,8 +1,8 @@
-import { DeepPartial, ReducersMapObject, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { CombinedState, Reducer, ReducersMapObject, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { counterReducer } from 'entities/counter';
 import { userReducer } from 'entities/User/model/slice/userSlice';
 import { $api } from 'shared/api/api';
-import type { StateSchema, ThunkNavigate } from './stateSchema';
+import type { StateSchema, ThunkExtra, ThunkNavigate } from './stateSchema';
 import { createReducerManager } from './reducerManager';
 
 export const createStore = (
@@ -18,16 +18,18 @@ export const createStore = (
 
 	const reducerManager = createReducerManager(rootReducer);
 
+	const extraArg: ThunkExtra = {
+		api: $api,
+		navigate
+	};
+
 	const store = configureStore({
-		reducer: reducerManager.reduce,
+		reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({
 				thunk: {
-					extraArgument: {
-						api: $api,
-						navigate
-					}
+					extraArgument: extraArg
 				}
 			})
 	});

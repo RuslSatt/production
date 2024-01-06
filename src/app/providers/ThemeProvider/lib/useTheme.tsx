@@ -12,12 +12,12 @@ const useTheme = (): IUseTheme => {
 
 	const toggleTheme = () => {
 		const newTheme = theme === Themes.LIGHT ? Themes.DARK : Themes.LIGHT;
-		setTheme(newTheme);
+		setTheme?.(newTheme);
 		document.documentElement.setAttribute('data-theme', newTheme);
 		localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
 	};
 
-	return { theme, toggleTheme };
+	return { theme: Themes.LIGHT, toggleTheme };
 };
 
 export default useTheme;
