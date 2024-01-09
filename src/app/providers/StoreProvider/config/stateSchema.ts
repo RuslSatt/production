@@ -2,12 +2,10 @@ import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } f
 import { AxiosInstance } from 'axios';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
-import { CounterScheme } from 'entities/counter';
 import { LoginSchema } from 'features/AuthByUsername';
 import { NavigateOptions, To } from 'react-router-dom';
 
 export interface StateSchema {
-	counter: CounterScheme;
 	user: UserSchema;
 
 	// Async reducers

@@ -1,5 +1,4 @@
 import { CombinedState, Reducer, ReducersMapObject, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import { counterReducer } from 'entities/counter';
 import { userReducer } from 'entities/User/model/slice/userSlice';
 import { $api } from 'shared/api/api';
 import type { StateSchema, ThunkExtra, ThunkNavigate } from './stateSchema';
@@ -12,7 +11,6 @@ export const createStore = (
 ) => {
 	const rootReducer: ReducersMapObject<StateSchema> = {
 		...asyncReducers,
-		counter: counterReducer,
 		user: userReducer
 	};
 
