@@ -1,0 +1,14 @@
+.card {
+	display: flex;
+	align-items: start;
+	flex-direction: column;
+	justify-content: center;
+	max-width: 300px;
+	gap: 10px;
+	padding: 10px;
+}
+
+.label {
+	font-size: 16px;
+	font-weight: 600;
+}

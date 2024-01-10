@@ -16,6 +16,7 @@ module.exports = {
 	plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
 	rules: {
 		'react/jsx-indent': [2, 'tab'],
+		'react/jsx-indent-props': 'off',
 		indent: ['error', 'tab'],
 		'no-tabs': 'off',
 		'comma-dangle': ['error', 'never'],

@@ -17,8 +17,12 @@ export const ProfilePageHeader = memo(() => {
 	}, [dispatch]);
 
 	const onCancelEdit = useCallback(() => {
-		dispatch(profileActions.setReadonly(true));
+		dispatch(profileActions.cancelEdit());
 	}, [dispatch]);
+
+	// const onSaveEdit = useCallback(() => {
+	// 	dispatch(profileActions.cancelEdit());
+	// }, [dispatch]);
 
 	return (
 		<div className={style.header}>
@@ -26,7 +30,10 @@ export const ProfilePageHeader = memo(() => {
 			{readonly ? (
 				<Button onClick={onEdit} label={t('Edit')} />
 			) : (
-				<Button onClick={onCancelEdit} label={t('Cancel')} />
+				<div className={style.buttonGroup}>
+					<Button onClick={onCancelEdit} label={t('Cancel')} />
+					<Button label={t('Save')} />
+				</div>
 			)}
 		</div>
 	);
