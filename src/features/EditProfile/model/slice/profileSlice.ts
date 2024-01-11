@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Profile, ProfileSchema } from '../../../../entities/Profile/model/types/profile';
 import { fetchProfileData } from '../services/fetchProfileData';
+import { updateProfileData } from '../services/updateProfileData';
 
 const initialState: ProfileSchema = {
 	isLoading: false,
@@ -37,6 +38,20 @@ export const profileSlice = createSlice({
 				state.isLoading = false;
 			})
 			.addCase(fetchProfileData.rejected, (state, action) => {
+				state.error = action.payload;
+				state.isLoading = false;
+			})
+			.addCase(updateProfileData.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
+				state.data = action.payload;
+				state.form = action.payload;
+				state.isLoading = false;
+				state.readonly = true;
+			})
+			.addCase(updateProfileData.rejected, (state, action) => {
 				state.error = action.payload;
 				state.isLoading = false;
 			});

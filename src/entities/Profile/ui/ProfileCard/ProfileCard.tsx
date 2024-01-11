@@ -2,21 +2,35 @@ import { Profile } from 'entities/Profile/model/types/profile';
 import React, { memo } from 'react';
 import { Input } from 'rs-custom-ui';
 import { useTranslation } from 'react-i18next';
+import { Currency, CurrencySelect } from 'entities/Currency';
+import { Country, CountrySelect } from 'entities/Country';
 import style from './ProfileCard.module.scss';
 
 export interface ProfileCardProps {
 	data?: Profile;
 	readonly?: boolean;
-	onChangeName: (value?: string) => void;
-	onChangeLastName: (value?: string) => void;
-	onChangeAge: (value?: string) => void;
-	onChangeCity: (value?: string) => void;
-	onChangeUsername: (value?: string) => void;
+	onChangeName?: (value?: string) => void;
+	onChangeLastName?: (value?: string) => void;
+	onChangeAge?: (value?: string) => void;
+	onChangeCity?: (value?: string) => void;
+	onChangeUsername?: (value?: string) => void;
+	onChangeCurrency?: (value?: Currency) => void;
+	onChangeCountry?: (value?: Country) => void;
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
 	const { t } = useTranslation();
-	const { data, readonly, onChangeName, onChangeLastName, onChangeAge, onChangeCity, onChangeUsername } = props;
+	const {
+		data,
+		readonly,
+		onChangeName,
+		onChangeLastName,
+		onChangeAge,
+		onChangeCity,
+		onChangeUsername,
+		onChangeCurrency,
+		onChangeCountry
+	} = props;
 
 	return (
 		<div className={style.card}>
@@ -40,6 +54,11 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 				{t('Username')}
 			</label>
 			<Input id='username' onChange={onChangeUsername} readOnly={readonly} value={data?.username || ''} />
+			<label className={style.label} htmlFor='currency'>
+				{t('Currency')}
+			</label>
+			<CurrencySelect disabled={readonly} value={data?.currency} onChange={onChangeCurrency} />
+			<CountrySelect disabled={readonly} value={data?.country} onChange={onChangeCountry} />
 		</div>
 	);
 });

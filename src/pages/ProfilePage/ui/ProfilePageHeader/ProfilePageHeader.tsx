@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'rs-custom-ui';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getProfileReadonly, profileActions } from 'features/EditProfile';
+import { getProfileReadonly, profileActions, updateProfileData } from 'features/EditProfile';
 import { useSelector } from 'react-redux';
 import style from './ProfilePageHeader.module.scss';
 
@@ -20,9 +20,9 @@ export const ProfilePageHeader = memo(() => {
 		dispatch(profileActions.cancelEdit());
 	}, [dispatch]);
 
-	// const onSaveEdit = useCallback(() => {
-	// 	dispatch(profileActions.cancelEdit());
-	// }, [dispatch]);
+	const onSaveEdit = useCallback(() => {
+		dispatch(updateProfileData());
+	}, [dispatch]);
 
 	return (
 		<div className={style.header}>
@@ -32,7 +32,7 @@ export const ProfilePageHeader = memo(() => {
 			) : (
 				<div className={style.buttonGroup}>
 					<Button onClick={onCancelEdit} label={t('Cancel')} />
-					<Button label={t('Save')} />
+					<Button onClick={onSaveEdit} label={t('Save')} />
 				</div>
 			)}
 		</div>
