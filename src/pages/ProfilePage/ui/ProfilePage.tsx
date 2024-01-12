@@ -1,19 +1,22 @@
-import { Profile, ProfileCard } from 'entities/Profile';
+import { ProfileCard } from 'entities/Profile';
 import React, { useCallback, useEffect } from 'react';
 import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchProfileData, getProfile, profileActions, profileReducer } from 'features/EditProfile';
+import { fetchProfileData, getProfile, getProfileErrors, profileActions, profileReducer } from 'features/EditProfile';
 import { useSelector } from 'react-redux';
 import { getProfileReadonly } from 'features/EditProfile/model/selectors/getProfileReadonly/getProfileReadonly';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { useTranslation } from 'react-i18next';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
+import styles from './ProfilePage.module.scss';
 
 const initialReducers: ReducersList = {
 	profile: profileReducer
 };
 
 const ProfilePage = () => {
+	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -23,6 +26,7 @@ const ProfilePage = () => {
 
 	const data = useSelector(getProfile);
 	const readonly = useSelector(getProfileReadonly);
+	const errors = useSelector(getProfileErrors);
 
 	const onChangeName = useCallback(
 		(value?: string) => {
@@ -105,6 +109,7 @@ const ProfilePage = () => {
 		<div>
 			<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
 				<ProfilePageHeader />
+				{!!errors?.length && errors.map((message) => <span className={styles.error}>{t(message)}</span>)}
 				<ProfileCard
 					onChangeName={onChangeName}
 					onChangeLastName={onChangeLastName}
