@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/decorators/ThemeDecorator';
 import { Themes } from 'app/providers/ThemeProvider/lib/ThemeContext';
 import { StoreDecorator } from 'shared/config/storybook/decorators/StoreDecorator';
+import { RouterDecorator } from 'shared/config/storybook/decorators/RouterDecorator';
 import LoginForm from './LoginForm';
 
 const meta: Meta<typeof LoginForm> = {
@@ -27,10 +28,10 @@ export const Light: Story = {
 	args: {}
 };
 
-Light.decorators = [store];
+Light.decorators = [store, RouterDecorator];
 
 export const Dark: Story = {
 	args: {}
 };
 
-Dark.decorators = [ThemeDecorator(Themes.DARK), store];
+Dark.decorators = [ThemeDecorator(Themes.DARK), store, RouterDecorator];

@@ -23,13 +23,13 @@ export const Light: Story = {
 	args: {}
 };
 
-Light.decorators = [RouterDecorator, store];
+Light.decorators = [store, RouterDecorator];
 
 export const Dark: Story = {
 	args: {}
 };
 
-Dark.decorators = [ThemeDecorator(Themes.DARK), store];
+Dark.decorators = [ThemeDecorator(Themes.DARK), store, RouterDecorator];
 
 export const Auth: Story = {
 	args: {}
@@ -44,5 +44,6 @@ Auth.decorators = [
 				username: 'admin'
 			}
 		}
-	})
+	}),
+	RouterDecorator
 ];
