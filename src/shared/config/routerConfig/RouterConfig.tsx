@@ -20,7 +20,11 @@ export const routerPath: Record<AppRoutes, string> = {
 	[AppRoutes.NOT_PAGE]: '*'
 };
 
-type RouterConfig = Record<AppRoutes, RouteProps>;
+export type AppRoutesProps = RouteProps & {
+	auth?: boolean;
+};
+
+type RouterConfig = Record<AppRoutes, AppRoutesProps>;
 
 export const routerConfig: RouterConfig = {
 	[AppRoutes.MAIN]: {
@@ -33,7 +37,8 @@ export const routerConfig: RouterConfig = {
 	},
 	[AppRoutes.PROFILE]: {
 		path: routerPath.profile,
-		element: <ProfilePage />
+		element: <ProfilePage />,
+		auth: true
 	},
 	[AppRoutes.NOT_PAGE]: {
 		path: routerPath.not_page,
