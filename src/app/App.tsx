@@ -7,12 +7,15 @@ import { AppRouter } from 'app/providers/AppRouter';
 import { useTheme } from 'app/providers/ThemeProvider';
 
 import '../shared/config/i18n/i18n';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from 'entities/User/model/slice/userSlice';
+import { getInitUserData } from 'entities/User';
 
 function App() {
 	const { theme } = useTheme();
 	const dispatch = useDispatch();
+
+	const initUser = useSelector(getInitUserData);
 
 	useEffect(() => {
 		dispatch(userActions.initAuthData());
@@ -24,9 +27,7 @@ function App() {
 				<NavBar />
 				<div className='wrapper'>
 					<Sidebar />
-					<div className='page'>
-						<AppRouter />
-					</div>
+					<div className='page'>{initUser && <AppRouter />}</div>
 				</div>
 			</div>
 		</Suspense>

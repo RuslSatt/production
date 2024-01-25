@@ -17,5 +17,9 @@ export const SidebarItemList: ISidebarItem[] = [
 	{
 		path: routerPath.profile,
 		text: 'Profile'
+	},
+	{
+		path: routerPath.articles,
+		text: 'Articles'
 	}
 ];

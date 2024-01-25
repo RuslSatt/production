@@ -42,7 +42,8 @@ module.exports = {
 		'no-param-reassign': 'off',
 		'object-curly-newline': 'off',
 		'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
-		'no-undef': 'off'
+		'no-undef': 'off',
+		'no-underscore-dangle': 'off'
 	},
 	overrides: [
 		{
