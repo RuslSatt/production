@@ -5,6 +5,7 @@ import App from 'app/App';
 import { ThemeProvider } from 'app/providers/ThemeProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { StoreProvider } from 'app/providers/StoreProvider';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');
@@ -12,13 +13,15 @@ if (!rootElement) throw new Error('Failed to find the root element');
 const root = createRoot(rootElement);
 
 root.render(
-	<BrowserRouter>
-		<StoreProvider>
-			<ErrorBoundary>
-				<ThemeProvider>
-					<App />
-				</ThemeProvider>
-			</ErrorBoundary>
-		</StoreProvider>
-	</BrowserRouter>
+	<ChakraProvider>
+		<BrowserRouter>
+			<StoreProvider>
+				<ErrorBoundary>
+					<ThemeProvider>
+						<App />
+					</ThemeProvider>
+				</ErrorBoundary>
+			</StoreProvider>
+		</BrowserRouter>
+	</ChakraProvider>
 );

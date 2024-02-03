@@ -2,6 +2,7 @@
   "About": "About",
   "About Page": "About Page",
   "Age": "Age",
+  "Article Details": "Article Details",
   "ArticleDetailsPage": "ArticleDetailsPage",
   "ArticlesPage": "ArticlesPage",
   "Cancel": "Cancel",
@@ -26,5 +27,6 @@
   "Username": "Username",
   "Войти": "Войти",
   "Обновить страницу": "Обновить страницу",
-  "Ошибка": "Ошибка"
+  "Ошибка": "Ошибка",
+  "Статья не найдена": "Статья не найдена"
 }
