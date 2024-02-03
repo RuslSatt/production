@@ -1,6 +1,10 @@
 type ArticleType = 'IT' | 'SCIENCE' | 'ECONOMICS';
 
-type ArticleBlockType = 'TEXT' | 'CODE' | 'IMAGE';
+export enum ArticleBlockType {
+	TEXT = 'TEXT',
+	CODE = 'CODE',
+	IMAGE = 'IMAGE'
+}
 
 interface ArticleBlockBase {
 	id: number;
@@ -8,20 +12,23 @@ interface ArticleBlockBase {
 }
 
 export interface IArticleTextBlock extends ArticleBlockBase {
+	type: ArticleBlockType.TEXT;
 	title: string;
 	paragraphs: string[];
 }
 
 export interface IArticleCodeBlock extends ArticleBlockBase {
+	type: ArticleBlockType.CODE;
 	code: string;
 }
 
 export interface IArticleImageBlock extends ArticleBlockBase {
+	type: ArticleBlockType.IMAGE;
 	title: string;
 	src: string;
 }
 
-type ArticleBlock = IArticleTextBlock | IArticleCodeBlock | IArticleImageBlock;
+export type ArticleBlock = IArticleTextBlock | IArticleCodeBlock | IArticleImageBlock;
 
 export interface IArticle {
 	id: number;

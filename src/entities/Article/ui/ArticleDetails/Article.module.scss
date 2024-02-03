@@ -1,2 +1,18 @@
 .article {
 }
+
+.avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.info {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.block {
+	margin-top: 10px;
+}
