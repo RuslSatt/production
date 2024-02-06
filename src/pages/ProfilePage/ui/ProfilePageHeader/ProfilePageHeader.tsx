@@ -4,6 +4,7 @@ import { Button } from 'rs-custom-ui';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getProfileReadonly, profileActions, updateProfileData } from 'features/EditProfile';
 import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 import style from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
@@ -15,6 +16,9 @@ export const ProfilePageHeader = memo((props: ProfilePageHeaderProps) => {
 
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
+
+	const authData = useSelector(getUserAuthData);
+	const canEdit = authData?.id === id;
 
 	const readonly = useSelector(getProfileReadonly);
 
@@ -30,17 +34,25 @@ export const ProfilePageHeader = memo((props: ProfilePageHeaderProps) => {
 		if (id) dispatch(updateProfileData(id));
 	}, [dispatch, id]);
 
+	let content;
+
+	if (readonly) {
+		content = <Button onClick={onEdit} label={t('Edit')} />;
+	} else {
+		content = (
+			<div className={style.buttonGroup}>
+				<Button onClick={onCancelEdit} label={t('Cancel')} />
+				<Button onClick={onSaveEdit} label={t('Save')} />
+			</div>
+		);
+	}
+
+	if (!canEdit) content = null;
+
 	return (
 		<div className={style.header}>
 			<h1>{t('Profile Card')}</h1>
-			{readonly ? (
-				<Button onClick={onEdit} label={t('Edit')} />
-			) : (
-				<div className={style.buttonGroup}>
-					<Button onClick={onCancelEdit} label={t('Cancel')} />
-					<Button onClick={onSaveEdit} label={t('Save')} />
-				</div>
-			)}
+			{content}
 		</div>
 	);
 });
