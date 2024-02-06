@@ -20,7 +20,7 @@ export enum AppRoutes {
 export const routerPath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.ABOUT]: '/about',
-	[AppRoutes.PROFILE]: '/profile',
+	[AppRoutes.PROFILE]: '/profile/',
 	[AppRoutes.ARTICLES]: '/articles',
 	[AppRoutes.ARTICLE_DETAILS]: '/articles/',
 
@@ -43,7 +43,7 @@ export const routerConfig: RouterConfig = {
 		element: <AboutPage />
 	},
 	[AppRoutes.PROFILE]: {
-		path: routerPath.profile,
+		path: `${routerPath.profile}:id`,
 		element: <ProfilePage />,
 		auth: true
 	},

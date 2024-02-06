@@ -6,7 +6,13 @@ import { getProfileReadonly, profileActions, updateProfileData } from 'features/
 import { useSelector } from 'react-redux';
 import style from './ProfilePageHeader.module.scss';
 
-export const ProfilePageHeader = memo(() => {
+interface ProfilePageHeaderProps {
+	id?: string;
+}
+
+export const ProfilePageHeader = memo((props: ProfilePageHeaderProps) => {
+	const { id } = props;
+
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
@@ -21,8 +27,8 @@ export const ProfilePageHeader = memo(() => {
 	}, [dispatch]);
 
 	const onSaveEdit = useCallback(() => {
-		dispatch(updateProfileData());
-	}, [dispatch]);
+		if (id) dispatch(updateProfileData(id));
+	}, [dispatch, id]);
 
 	return (
 		<div className={style.header}>

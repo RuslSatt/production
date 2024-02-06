@@ -3,7 +3,7 @@ import { MainPage } from 'pages/MainPage';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { routerPath } from 'shared/config/routerConfig/RouterConfig';
+import { routerPath } from 'app/providers/AppRouter/routerConfig/RouterConfig';
 
 export function RequireAuth({ children }: { children: React.ReactNode }) {
 	const auth = useSelector(getUserAuthData);

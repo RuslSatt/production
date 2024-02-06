@@ -8,6 +8,7 @@ import { getProfileReadonly } from 'features/EditProfile/model/selectors/getProf
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 import styles from './ProfilePage.module.scss';
 
@@ -19,10 +20,11 @@ const ProfilePage = () => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
+	const { id } = useParams();
+
 	useEffect(() => {
-		dispatch(fetchProfileData());
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		if (id) dispatch(fetchProfileData(id));
+	}, [dispatch, id]);
 
 	const data = useSelector(getProfile);
 	const readonly = useSelector(getProfileReadonly);
@@ -108,7 +110,7 @@ const ProfilePage = () => {
 	return (
 		<div>
 			<DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-				<ProfilePageHeader />
+				<ProfilePageHeader id={id} />
 				{!!errors?.length && errors.map((message) => <span className={styles.error}>{t(message)}</span>)}
 				<ProfileCard
 					onChangeName={onChangeName}

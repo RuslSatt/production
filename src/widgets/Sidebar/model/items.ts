@@ -1,4 +1,4 @@
-import { routerPath } from 'shared/config/routerConfig/RouterConfig';
+import { routerPath } from 'app/providers/AppRouter/routerConfig/RouterConfig';
 
 export interface ISidebarItem {
 	path: string;
