@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
 import { Avatar, Box, Card, CardBody, SkeletonCircle, SkeletonText, Text } from '@chakra-ui/react';
+import { ButtonLink } from 'shared/ui/ButtonLink/ButtonLink';
+import { routerPath } from 'app/providers/AppRouter/routerConfig/RouterConfig';
 import { IComment } from '../../model/types/comment';
 import styles from './CommentCard.module.scss';
 
@@ -24,11 +26,11 @@ export const CommentCard = memo((props: CommentProps) => {
 	return (
 		<Card className={styles.card}>
 			<CardBody>
-				<div className={styles.user}>
-					<Avatar src={data?.user.avatar} />
-					<Text>{data?.user.username}</Text>
-				</div>
-				<Text>{data?.text}</Text>
+				<ButtonLink to={`${routerPath.profile}${data?.user.id}`} className={styles.user}>
+					{data && <Avatar src={data?.user.avatar} />}
+					{data && <Text>{data?.user.username}</Text>}
+				</ButtonLink>
+				{data && <Text>{data?.text}</Text>}
 			</CardBody>
 		</Card>
 	);

@@ -12,8 +12,9 @@ export const CommentList = memo((props: CommentListProps) => {
 
 	return (
 		<div>
-			{comments?.length &&
-				comments.map((comment) => <CommentCard key={comment.id} data={comment} isLoading={isLoading} />)}
+			{comments?.length
+				? comments.map((comment) => <CommentCard key={comment.id} data={comment} isLoading={isLoading} />)
+				: undefined}
 		</div>
 	);
 });

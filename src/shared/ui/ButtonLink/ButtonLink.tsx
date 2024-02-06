@@ -6,12 +6,13 @@ import style from './ButtonLink.module.scss';
 
 interface ButtonLinkProps extends LinkProps {
 	children?: React.ReactNode;
+	className?: string;
 }
 
 export const ButtonLink = memo((props: ButtonLinkProps) => {
-	const { children, to } = props;
+	const { children, to, className } = props;
 	return (
-		<Link className={classNames(style.Link, [])} to={to}>
+		<Link className={classNames(style.Link, [className])} to={to}>
 			{children}
 		</Link>
 	);
