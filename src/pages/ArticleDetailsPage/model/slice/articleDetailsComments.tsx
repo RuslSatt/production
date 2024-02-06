@@ -20,7 +20,11 @@ export const articleDetailsCommentsSlice = createSlice({
 		ids: [],
 		entities: {}
 	}),
-	reducers: {},
+	reducers: {
+		addComment(state, action: PayloadAction<IComment>) {
+			commentsAdapter.setOne(state, action.payload);
+		}
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchArticleCommentsById.pending, (state) => {

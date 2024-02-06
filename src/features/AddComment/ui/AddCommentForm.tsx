@@ -7,35 +7,45 @@ import { Button, Input } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { addCommentActions, addCommentReducer } from '../model/slice/addCommentSlice';
 import styles from './AddCommentForm.module.scss';
-import { addNewComment } from '../model/services/addNewComment';
 import { getNewCommentText } from '../model/selectors/getNewComment';
 
 const reducersList = {
 	addComment: addCommentReducer
 };
 
-export const AddCommentForm = memo((props) => {
+interface AddCommentFormProps {
+	onSendComment: (text: string) => void;
+}
+
+export const AddCommentForm = memo((props: AddCommentFormProps) => {
+	const { onSendComment } = props;
+
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 
 	const handlerInput = useCallback(
-		(e: ChangeEvent<HTMLInputElement>) => {
-			dispatch(addCommentActions.setComment(e.target.value));
+		(text: string) => {
+			dispatch(addCommentActions.setText(text));
 		},
 		[dispatch]
 	);
 
-	const handlerClick = useCallback(() => {
-		dispatch(addNewComment());
-	}, [dispatch]);
-
 	const text = useSelector(getNewCommentText);
+
+	const onSendHandler = useCallback(() => {
+		onSendComment(text || '');
+		handlerInput('');
+	}, [handlerInput, onSendComment, text]);
 
 	return (
 		<DynamicModuleLoader reducers={reducersList} removeAfterUnmount>
 			<div className={styles.form}>
-				<Input value={text || ''} onChange={(e) => handlerInput(e)}></Input>
-				<Button onClick={() => handlerClick()}>{t('Добавить')}</Button>
+				<Input
+					value={text || ''}
+					onChange={(e: ChangeEvent<HTMLInputElement>) => handlerInput(e.target.value)}
+					// eslint-disable-next-line react/jsx-closing-tag-location
+				></Input>
+				<Button onClick={onSendHandler}>{t('Добавить')}</Button>
 			</div>
 		</DynamicModuleLoader>
 	);

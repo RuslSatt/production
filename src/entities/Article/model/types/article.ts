@@ -31,7 +31,7 @@ export interface IArticleImageBlock extends ArticleBlockBase {
 export type ArticleBlock = IArticleTextBlock | IArticleCodeBlock | IArticleImageBlock;
 
 export interface IArticle {
-	id: number;
+	id: string;
 	title: string;
 	subtitle: string;
 	img: string;

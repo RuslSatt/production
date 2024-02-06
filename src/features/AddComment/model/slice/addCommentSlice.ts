@@ -9,24 +9,9 @@ export const addCommentSlice = createSlice({
 	name: 'articleDetails',
 	initialState,
 	reducers: {
-		setComment(state, action) {
+		setText(state, action: PayloadAction<string>) {
 			state.text = action.payload;
 		}
-	},
-	extraReducers: (builder) => {
-		// builder
-		// 	.addCase(fetchArticleById.pending, (state) => {
-		// 		state.error = undefined;
-		// 		state.isLoading = true;
-		// 	})
-		// 	.addCase(fetchArticleById.fulfilled, (state, action) => {
-		// 		state.isLoading = false;
-		// 		state.data = action.payload;
-		// 	})
-		// 	.addCase(fetchArticleById.rejected, (state, action) => {
-		// 		state.error = action.payload;
-		// 		state.isLoading = false;
-		// 	});
 	}
 });
 

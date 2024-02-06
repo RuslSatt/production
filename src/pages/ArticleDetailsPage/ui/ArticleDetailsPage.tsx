@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleDetails } from 'entities/Article/ui/ArticleDetails/ArticleDetails';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ import { AddCommentForm } from 'features/AddComment';
 import { fetchArticleCommentsById } from '../model/services/fetchArticleCommentsById';
 import { getArticleDetailsCommentsIsLoading } from '../model/selectors/getArticleDetailsComments';
 import { articleDetailsCommentsReducer, getArticleDetailsComments } from '../model/slice/articleDetailsComments';
+import { addArticleDetailsComment } from '../model/services/addArticleDetailsComment';
 
 const reducersList = {
 	articleDetailsComments: articleDetailsCommentsReducer
@@ -29,6 +30,13 @@ const ArticleDetailsPage = () => {
 	const comments = useSelector(getArticleDetailsComments.selectAll);
 	const isLoading = useSelector(getArticleDetailsCommentsIsLoading);
 
+	const onSendComment = useCallback(
+		(text: string) => {
+			dispatch(addArticleDetailsComment(text));
+		},
+		[dispatch]
+	);
+
 	if (!id) {
 		return (
 			<div>
@@ -40,7 +48,7 @@ const ArticleDetailsPage = () => {
 	return (
 		<DynamicModuleLoader reducers={reducersList} removeAfterUnmount>
 			<ArticleDetails id={id} />
-			<AddCommentForm />
+			<AddCommentForm onSendComment={onSendComment} />
 			<CommentList comments={comments} isLoading={isLoading} />
 		</DynamicModuleLoader>
 	);

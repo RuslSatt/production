@@ -4,15 +4,14 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { IComment } from 'entities/Comment';
 import { getUserAuthData } from 'entities/User';
 import { getArticleDetails } from 'entities/Article';
-import { getNewCommentText } from '../selectors/getNewComment';
+import { articleDetailsCommentsActions } from '../slice/articleDetailsComments';
 
-export const addNewComment = createAsyncThunk<IComment, void, ThunkConfig<string>>(
-	'profile/updateProfileData',
-	async (_, thunkApi) => {
-		const { rejectWithValue, extra, getState } = thunkApi;
+export const addArticleDetailsComment = createAsyncThunk<IComment, string, ThunkConfig<string>>(
+	'articleDetailsPage/addArticleDetailsComment',
+	async (text, thunkApi) => {
+		const { rejectWithValue, extra, getState, dispatch } = thunkApi;
 
 		const user = getUserAuthData(getState());
-		const text = getNewCommentText(getState());
 		const article = getArticleDetails(getState());
 
 		if (!user || !text || !article) return rejectWithValue('no comment data');
@@ -24,11 +23,15 @@ export const addNewComment = createAsyncThunk<IComment, void, ThunkConfig<string
 		};
 
 		try {
-			const response = await extra.api.post('/comments', data);
+			const response = await extra.api.post<IComment>('/comments', data);
 
-			if (!response.data) throw new Error();
+			const comment = response.data;
 
-			return response.data;
+			if (!comment) throw new Error();
+
+			dispatch(articleDetailsCommentsActions.addComment({ ...comment, user }));
+
+			return comment;
 		} catch (e) {
 			return rejectWithValue('error add comment');
 		}
