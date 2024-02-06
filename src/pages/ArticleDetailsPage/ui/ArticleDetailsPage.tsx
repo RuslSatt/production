@@ -6,6 +6,7 @@ import { CommentList } from 'entities/Comment';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { DynamicModuleLoader } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { AddCommentForm } from 'features/AddComment';
 import { fetchArticleCommentsById } from '../model/services/fetchArticleCommentsById';
 import { getArticleDetailsCommentsIsLoading } from '../model/selectors/getArticleDetailsComments';
 import { articleDetailsCommentsReducer, getArticleDetailsComments } from '../model/slice/articleDetailsComments';
@@ -39,6 +40,7 @@ const ArticleDetailsPage = () => {
 	return (
 		<DynamicModuleLoader reducers={reducersList} removeAfterUnmount>
 			<ArticleDetails id={id} />
+			<AddCommentForm />
 			<CommentList comments={comments} isLoading={isLoading} />
 		</DynamicModuleLoader>
 	);
