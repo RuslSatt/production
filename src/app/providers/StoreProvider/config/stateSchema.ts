@@ -1,6 +1,6 @@
 import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { ArticleDetailsSchema } from 'entities/Article';
+import { ArticleDetailsSchema, ArticlesSchema } from 'entities/Article';
 import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { addCommentSchema } from 'features/AddComment';
@@ -15,6 +15,7 @@ export interface StateSchema {
 	loginForm?: LoginSchema;
 	profile?: ProfileSchema;
 	articleDetails?: ArticleDetailsSchema;
+	articles?: ArticlesSchema;
 	articleDetailsComments?: ArticleDetailsCommentsSchema;
 	addComment?: addCommentSchema;
 }

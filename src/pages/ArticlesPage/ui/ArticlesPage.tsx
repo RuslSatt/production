@@ -1,17 +1,24 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ArticleList, getArticles } from 'entities/Article';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { fetchArticles } from 'entities/Article/model/services/fetchArticles';
+import { useSelector } from 'react-redux';
 import styles from './ArticlesPage.module.scss';
 
 const ArticlesPage = () => {
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+		dispatch(fetchArticles());
+	}, [dispatch]);
+
+	const articles = useSelector(getArticles);
 
 	return (
 		<div>
-			<p>{t('ArticlesPage')}</p>
+			<ArticleList articles={articles} />
 		</div>
 	);
 };

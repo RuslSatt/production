@@ -46,3 +46,12 @@ export interface ArticleDetailsSchema {
 	error?: string;
 	data?: IArticle;
 }
+
+export interface ArticlesSchema extends Omit<ArticleDetailsSchema, 'data'> {
+	data?: IArticle[];
+}
+
+export enum ArticleView {
+	LIST = 'LIST',
+	CARD = 'CARD'
+}
