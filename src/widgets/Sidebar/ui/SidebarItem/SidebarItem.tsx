@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonLink } from 'shared/ui/ButtonLink/ButtonLink';
-import { ISidebarItem } from 'widgets/Sidebar/model/items';
+import { ISidebarItem } from 'widgets/Sidebar/model/types/sidebarItem';
 
 export const SidebarItem = (props: ISidebarItem) => {
 	const { path, text } = props;

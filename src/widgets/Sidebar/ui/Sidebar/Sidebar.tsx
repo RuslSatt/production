@@ -1,12 +1,14 @@
 import React, { memo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'rs-custom-ui';
-import { SidebarItemList } from 'widgets/Sidebar/model/items';
+import { getSidebarItems } from 'widgets/Sidebar/model/selectors/getSidebarItems';
+import { useSelector } from 'react-redux';
 import style from './Sidebar.module.scss';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 export const Sidebar = memo(() => {
 	const [collapsed, setCollapsed] = useState(false);
+	const SidebarItemList = useSelector(getSidebarItems);
 
 	const handleToggle = () => {
 		setCollapsed((value) => !value);
